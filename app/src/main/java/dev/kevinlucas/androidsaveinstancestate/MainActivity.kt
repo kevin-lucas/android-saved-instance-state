@@ -15,7 +15,7 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
 
     private val handler = Handler()
-    private var imgs: ArrayList<Bitmap>? = ArrayList()
+    private var imgs: ArrayList<Img>? = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                         URL("https://www.thiengo.com.br/img/system/logo/logo-thiengo-calopsita-70x70.png")
                     val conexao = url.openConnection()
                     val input = conexao.getInputStream()
-                    imgs!!.add(BitmapFactory.decodeStream(input))
+                    imgs!!.add(Img(BitmapFactory.decodeStream(input)))
                 }
 
             } catch (e: IOException) {
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         val linearLayout = findViewById<LinearLayout>(R.id.linerLayout1)
         for (i in 0 until imgs!!.size) {
             val iv = ImageView(baseContext)
-            iv.setImageBitmap(imgs!![i])
+            iv.setImageBitmap(imgs!![i].bitmap)
             linearLayout.addView(iv)
         }
     }
